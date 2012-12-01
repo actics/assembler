@@ -18,9 +18,8 @@ hanoi_towers:
     push qword [rbp+8*5]
     push qword [rbp+8*3]
     push qword [rbp+8*2]
-
     call hanoi_towers
-    sub rsp, 8*4
+    add rsp, 8*4
 
     mov rdx, [rbp+8*4]
     mov rsi, [rbp+8*3]
@@ -32,9 +31,8 @@ hanoi_towers:
     push qword [rbp+8*4]
     push qword [rbp+8*5]
     push qword [rbp+8*2]
-
     call hanoi_towers
-    sub rsp, 8*4
+    add rsp, 8*4
 
     jmp .exit
     

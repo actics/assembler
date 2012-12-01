@@ -34,37 +34,35 @@ squaring_matrix:
     xor r8, r8   ; i
 .for_i:
     xor r9, r9   ; j
-.for_j:
-    xor r11, r11
-    xor r10, r10 ; k
-.for_k:
-    mov rcx, [r14+r8*8]
-    mov rax, [rcx+r10*8]
-    
-    mov rcx, [r14+r10*8]
-    mov rbx, [rcx+r9*8]
-    
-    imul rbx
-    
-;    test rdx, rdx
-    
-    add r11, rax
-    
-    inc r10
-    cmp r10, r15
-jl .for_k
-    
-    mov rbx, [r13+r8*8]
-    lea rax, [rbx+r9*8]
-    mov [rax], r11
-    
-    inc r9
-    cmp r9, r15
-jl .for_j
-    
+    .for_j:
+        xor r11, r11
+        xor r10, r10 ; k
+        .for_k:
+            mov rcx, [r14+r8*8]
+            mov rax, [rcx+r10*8]
+            
+            mov rcx, [r14+r10*8]
+            mov rbx, [rcx+r9*8]
+            
+            imul rbx
+            
+            add r11, rax
+            
+            inc r10
+            cmp r10, r15
+            jl .for_k
+            
+        mov rbx, [r13+r8*8]
+        lea rax, [rbx+r9*8]
+        mov [rax], r11
+        
+        inc r9
+        cmp r9, r15
+        jl .for_j
+        
     inc r8
     cmp r8, r15
-jl .for_i
+    jl .for_i
     
     mov rsp, rbp
     pop rbp
@@ -91,26 +89,26 @@ print_matrix:
     mov qword [rsp], 0
 .for_i:
     mov qword [rsp+8], 0
-.for_j:
-    mov rax, [rsp]
-    mov rbx, [r14 + rax*8]
-    mov rax, [rsp+8]
-    mov rsi, [rbx + rax*8]
-    mov rdi, print_num
-    xor rax, rax
-    call printf
-    
-    inc qword [rsp+8]
-    cmp qword [rsp+8], r15
-jl .for_j
-    
+    .for_j:
+        mov rax, [rsp]
+        mov rbx, [r14 + rax*8]
+        mov rax, [rsp+8]
+        mov rsi, [rbx + rax*8]
+        mov rdi, print_num
+        xor rax, rax
+        call printf
+        
+        inc qword [rsp+8]
+        cmp qword [rsp+8], r15
+        jl .for_j
+        
     mov rdi, print_bn
     xor rax, rax
     call printf
     
     inc qword [rsp]
     cmp qword [rsp], r15
-jl .for_i
+    jl .for_i
     
     mov rsp, rbp
     pop rbp

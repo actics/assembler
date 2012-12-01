@@ -7,8 +7,8 @@ _start:
     push qword 2
     push qword 1
     push qword 3
-    
     call hanoi_towers
+    add rsp, 8*4
     
     mov rax, 1
     mov rbx, 0

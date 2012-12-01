@@ -33,10 +33,12 @@ _start:
     push matrix
     push return_matrix
     call squaring_matrix
-    
+    add rsp, 8*3
+
     push side_len
     push return_matrix
     call print_matrix
+    add rsp, 8*2
 
     mov rax, 1
     mov rbx, 0

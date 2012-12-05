@@ -8,3 +8,9 @@ nasm.pdf
 *~
 *.swp
 *.o
+*.mod
+*.mod.c
+*.cmd
+*.order
+*.ko
+*.symvers

@@ -2,7 +2,7 @@ OUTPUT_ARCH(i386)
 
 SECTIONS {
 
-    .text 0x100 : AT ( 0 ) {
+    .text 0x100 : {
         *(.text)
     }
 
